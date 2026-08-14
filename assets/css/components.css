@@ -23,6 +23,11 @@
 .btn svg { width: 16px; height: 16px; flex: none; transition: transform 0.35s var(--ease-premium); }
 .btn:hover svg { transform: translateX(3px); }
 .btn:active { transform: scale(0.98); }
+/* Long labels ("School & Institutional Enquiries") must never force the
+   page wider than the screen on mobile — wrap to two lines instead. */
+@media (max-width: 480px) {
+  .btn { white-space: normal; text-align: center; max-width: 100%; }
+}
 
 .btn--primary {
   background: var(--surface);
@@ -206,25 +211,28 @@
   justify-content: space-between;
   gap: var(--sp-5);
 }
-.brand-lockup { display: flex; align-items: center; gap: var(--sp-3); flex: none; min-width: 0; }
+/* Both marks (Amuzi + AFA) stay visible at every width — scaled down
+   rather than hidden, so mobile and desktop show the same brand lockup. */
+.brand-lockup { display: flex; align-items: center; gap: var(--sp-2); flex: none; min-width: 0; }
 .brand-lockup__mark,
 .brand-lockup__partner-mark,
-.brand-lockup__afa-mark { height: 32px; width: auto; }
-.brand-lockup__divider { width: 1px; height: 24px; background: var(--mist-24); flex: none; }
+.brand-lockup__afa-mark { height: 24px; width: auto; }
+.brand-lockup__divider { width: 1px; height: 20px; background: var(--mist-24); flex: none; }
 .brand-lockup__partner-link { display: flex; align-items: center; }
 .brand-lockup__partner-mark,
 .brand-lockup__afa-mark { opacity: 0.92; }
-.brand-lockup__divider,
-.brand-lockup__partner-link { display: none; }
 @media (min-width: 480px) {
-  .brand-lockup__divider,
-  .brand-lockup__partner-link { display: flex; }
-}
-@media (min-width: 480px) and (max-width: 719px) {
+  .brand-lockup { gap: var(--sp-3); }
   .brand-lockup__mark,
   .brand-lockup__partner-mark,
-  .brand-lockup__afa-mark { height: 26px; }
-  .brand-lockup { gap: var(--sp-2); }
+  .brand-lockup__afa-mark { height: 28px; }
+  .brand-lockup__divider { height: 22px; }
+}
+@media (min-width: 720px) {
+  .brand-lockup__mark,
+  .brand-lockup__partner-mark,
+  .brand-lockup__afa-mark { height: 32px; }
+  .brand-lockup__divider { height: 24px; }
 }
 
 .main-nav { display: none; }
@@ -270,9 +278,15 @@
 .nav-toggle[aria-expanded="true"] span:nth-child(2) { opacity: 0; }
 .nav-toggle[aria-expanded="true"] span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
 
+/* Same cinematic glow-field the rest of the site uses — not a flat navy
+   panel — so the mobile menu carries the same premium look as desktop. */
 .mobile-nav {
   position: fixed; inset: 0;
-  background: var(--bg);
+  background:
+    linear-gradient(165deg, rgba(5,12,26,0.82) 0%, rgba(5,12,26,0.94) 100%),
+    url('../img/bg/glow-field.jpg');
+  background-size: cover;
+  background-position: center;
   z-index: 490;
   display: flex;
   flex-direction: column;
@@ -289,7 +303,12 @@
   text-transform: uppercase;
   color: var(--white);
   padding-block: var(--sp-3);
-  border-bottom: 1px solid var(--mist-08);
+  border-bottom: 1px solid rgba(255,103,31,0.2);
+  transition: color 0.25s var(--ease-premium);
+}
+.mobile-nav__link:active,
+.mobile-nav__link[aria-current="page"] {
+  color: var(--saffron-soft);
 }
 .mobile-nav__actions { margin-top: var(--sp-7); display: flex; flex-direction: column; gap: var(--sp-3); }
 .mobile-nav__meta { margin-top: auto; padding-top: var(--sp-6); color: var(--mist-45); font-size: 0.82rem; }
