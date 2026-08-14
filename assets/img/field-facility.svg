@@ -1,0 +1,66 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 700 700" fill="none" role="img" aria-label="Illustration of a football training facility">
+  <defs>
+    <linearGradient id="pitchFill" x1="120" y1="150" x2="580" y2="550" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#15488F"/>
+      <stop offset="1" stop-color="#0E2E63"/>
+    </linearGradient>
+    <linearGradient id="goldLine" x1="0" y1="0" x2="700" y2="0" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#A97C00"/>
+      <stop offset="0.5" stop-color="#F7D878"/>
+      <stop offset="1" stop-color="#A97C00"/>
+    </linearGradient>
+  </defs>
+
+  <!-- pitch surface -->
+  <rect x="110" y="140" width="480" height="420" rx="14" fill="url(#pitchFill)" stroke="url(#goldLine)" stroke-width="2.5"/>
+
+  <!-- mow stripes -->
+  <g opacity="0.12">
+    <rect x="110" y="140" width="48" height="420" fill="#fff"/>
+    <rect x="206" y="140" width="48" height="420" fill="#fff"/>
+    <rect x="302" y="140" width="48" height="420" fill="#fff"/>
+    <rect x="398" y="140" width="48" height="420" fill="#fff"/>
+    <rect x="494" y="140" width="48" height="420" fill="#fff"/>
+  </g>
+
+  <!-- pitch markings -->
+  <g stroke="#EAF2FF" stroke-width="2" opacity="0.85">
+    <line x1="110" y1="350" x2="590" y2="350"/>
+    <circle cx="350" cy="350" r="62"/>
+    <circle cx="350" cy="350" r="3" fill="#EAF2FF" stroke="none"/>
+    <rect x="110" y="255" width="90" height="190"/>
+    <rect x="110" y="305" width="34" height="90"/>
+    <path d="M200 300 A62 62 0 0 1 200 400"/>
+    <rect x="500" y="255" width="90" height="190"/>
+    <rect x="556" y="305" width="34" height="90"/>
+    <path d="M500 300 A62 62 0 0 0 500 400"/>
+  </g>
+
+  <!-- floodlight towers -->
+  <g stroke="url(#goldLine)" stroke-width="3" stroke-linecap="round">
+    <line x1="90" y1="120" x2="90" y2="70"/>
+    <line x1="610" y1="120" x2="610" y2="70"/>
+    <line x1="90" y1="580" x2="90" y2="630"/>
+    <line x1="610" y1="580" x2="610" y2="630"/>
+  </g>
+  <g fill="none" stroke="url(#goldLine)" stroke-width="2.5">
+    <rect x="70" y="52" width="40" height="20" rx="3"/>
+    <rect x="590" y="52" width="40" height="20" rx="3"/>
+    <rect x="70" y="628" width="40" height="20" rx="3"/>
+    <rect x="590" y="628" width="40" height="20" rx="3"/>
+  </g>
+  <g fill="url(#goldLine)" opacity="0.9">
+    <circle cx="78" cy="62" r="2.4"/><circle cx="90" cy="62" r="2.4"/><circle cx="102" cy="62" r="2.4"/>
+    <circle cx="598" cy="62" r="2.4"/><circle cx="610" cy="62" r="2.4"/><circle cx="622" cy="62" r="2.4"/>
+    <circle cx="78" cy="638" r="2.4"/><circle cx="90" cy="638" r="2.4"/><circle cx="102" cy="638" r="2.4"/>
+    <circle cx="598" cy="638" r="2.4"/><circle cx="610" cy="638" r="2.4"/><circle cx="622" cy="638" r="2.4"/>
+  </g>
+
+  <!-- corner accent arcs -->
+  <g stroke="url(#goldLine)" stroke-width="2" opacity="0.7">
+    <path d="M110 150 a10 10 0 0 0 10 -10"/>
+    <path d="M590 150 a10 10 0 0 1 -10 -10"/>
+    <path d="M110 550 a10 10 0 0 1 10 10"/>
+    <path d="M590 550 a10 10 0 0 0 -10 10"/>
+  </g>
+</svg>

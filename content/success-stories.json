@@ -1,0 +1,26 @@
+[
+  {
+    "placeholder": true,
+    "name": "Player Story — Coming Soon",
+    "from": "Feeder Centre",
+    "to": "Intermediate Centre Selection",
+    "quote": "As our first cohorts progress through the pathway, their journeys will be featured here — with families' permission and full editorial care.",
+    "location": "West Bengal"
+  },
+  {
+    "placeholder": true,
+    "name": "Player Story — Coming Soon",
+    "from": "Intermediate Centre",
+    "to": "Centre of Excellence Trial",
+    "quote": "Real journeys, real names, real progress — published as our network matures.",
+    "location": "Northeast India"
+  },
+  {
+    "placeholder": true,
+    "name": "Player Story — Coming Soon",
+    "from": "Centre of Excellence",
+    "to": "International Exposure",
+    "quote": "This space is reserved for verified milestones only — trial call-ups, selections and international exchanges.",
+    "location": "India"
+  }
+]

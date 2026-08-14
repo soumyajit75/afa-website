@@ -1,0 +1,44 @@
+[
+  {
+    "key": "feeder",
+    "name": "Feeder Centres",
+    "audience": "Community & grassroots, ages 6–12",
+    "summary": "Grassroots football education delivered inside our feeder centres and community grounds — the entry point into the pathway.",
+    "cta": "Explore Feeder Centres"
+  },
+  {
+    "key": "intermediate",
+    "name": "Intermediate Centres",
+    "audience": "Ages 10–16",
+    "summary": "Structured, AFA-certified coaching with formal development contracts for selected players.",
+    "cta": "Explore Intermediate Centres"
+  },
+  {
+    "key": "coe",
+    "name": "Centre of Excellence",
+    "audience": "Ages 14–19, elite track",
+    "summary": "Our flagship performance environment — full-time training, sports science and international exposure.",
+    "cta": "Explore Centre of Excellence"
+  },
+  {
+    "key": "girls",
+    "name": "Beti Khilao — Vision 2031",
+    "audience": "All ages",
+    "summary": "A dedicated development pathway building toward the FIFA Women's World Cup — from first touch to elite performance.",
+    "cta": "Learn More"
+  },
+  {
+    "key": "schools",
+    "name": "School & Institutional Partnerships",
+    "audience": "Schools, universities & clubs",
+    "summary": "Curriculum integration, coach education and talent pipelines built in partnership with academic institutions.",
+    "cta": "Partner With Us"
+  },
+  {
+    "key": "camps",
+    "name": "Trials, Camps & Talent ID",
+    "audience": "Open trials & selective camps",
+    "summary": "Data-driven scouting and open trial pathways that give every player, anywhere, a chance to be seen.",
+    "cta": "Find a Trial"
+  }
+]

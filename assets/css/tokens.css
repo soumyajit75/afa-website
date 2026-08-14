@@ -1,0 +1,119 @@
+/*
+  AMUZI SPORTS — DESIGN TOKENS
+  Brand colour system, gradients, type scale, spacing, radii, shadows.
+  This file is the single source of truth for the visual design system.
+
+  Colour direction: exactly two brand colours, used deliberately. Indian Navy
+  Blue is the dominant background/structure hue everywhere (not Argentina sky
+  blue, not black/white). Indian Flag Saffron is the one accent — CTAs,
+  highlight numerals, the header/footer signature stripe, the pathway's
+  grassroots-to-flagship progression. Every section shares --bg — surfaces
+  are differentiated with translucency/borders/saffron accents, never a
+  third hue.
+*/
+
+:root {
+  /* ---- Indian Blue system (primary — replaces Argentina sky blue) ---- */
+  --bg: #0A2049;            /* THE site background — used everywhere, unchanged */
+  --bg-deep: #071733;       /* subtle depth for gradients/overlays, same hue family */
+  --surface: #123A73;       /* elevated solid surface — buttons, inputs, solid chips */
+  --surface-2: #17427F;     /* slightly higher elevation (hover states) */
+  --blue-accent: #3E86FF;   /* bright Indian blue accent — links, icons, focus */
+  --blue-accent-soft: #6FA8FF; /* lighter accent for gradient tops / highlights */
+
+  /* Aliases kept so existing component rules (icon colours, gradients) don't
+     need renaming — both now resolve to the Indian blue accent, not Argentina blue */
+  --sky: var(--blue-accent-soft);
+  --royal: var(--blue-accent);
+
+  /* ---- Indian Flag Saffron (the one accent — Argentina x India identity) ----
+     Used deliberately at signature moments — the header/footer flag stripe,
+     hero glow, the primary "Join the Pathway" CTA, pathway progression, and
+     the Beti Khilao / Vision 2031 storyline — never as flat background blocks.
+     Blue remains dominant; saffron is the single accent that carries every
+     highlight, premium number and call-to-action across the whole site. */
+  --saffron: #FF671F;
+  --saffron-soft: #FF8B52;
+  --saffron-deep: #C6470E;
+
+  /* ---- Neutrals used only for text/icons, never as section backgrounds ---- */
+  --white: #FFFFFF;
+  --black: #000000;
+
+  /* ---- Foreground (text) tokens — light, since every background is dark navy ---- */
+  --ink: #FFFFFF;
+  --ink-08: rgba(255, 255, 255, 0.08);
+  --ink-12: rgba(255, 255, 255, 0.12);
+  --ink-24: rgba(255, 255, 255, 0.24);
+  --ink-45: rgba(255, 255, 255, 0.5);
+  --ink-65: rgba(255, 255, 255, 0.72);
+  --ink-85: rgba(255, 255, 255, 0.9);
+  --mist-08: rgba(255, 255, 255, 0.08);
+  --mist-12: rgba(255, 255, 255, 0.12);
+  --mist-24: rgba(255, 255, 255, 0.24);
+  --mist-45: rgba(255, 255, 255, 0.5);
+  --mist-65: rgba(255, 255, 255, 0.72);
+  --mist-85: rgba(255, 255, 255, 0.9);
+
+  /* ---- Legacy alias kept for any stray reference — repointed to Indian blue ---- */
+  --pearl: rgba(255, 255, 255, 0.08);
+
+  /* ---- Gradients ---- */
+  --gradient-sky: linear-gradient(135deg, var(--blue-accent-soft) 0%, var(--blue-accent) 55%, var(--surface) 100%);
+  --gradient-sky-soft: linear-gradient(135deg, rgba(110,168,255,0.28) 0%, rgba(62,134,255,0.18) 50%, rgba(18,58,115,0.16) 100%);
+  --gradient-bg: radial-gradient(120% 90% at 85% 0%, rgba(62,134,255,0.16), transparent 55%), radial-gradient(90% 70% at 8% 100%, rgba(255,103,31,0.12), transparent 60%);
+  --gradient-saffron: linear-gradient(135deg, var(--saffron-soft) 0%, var(--saffron) 55%, var(--saffron-deep) 100%);
+  /* Signature "flag" gradient — the one motif that carries both brand colours
+     together. Reserved for thin, deliberate moments: the header/footer
+     stripe, eyebrow accent bars, the pathway's stage progression. */
+  --gradient-flag: linear-gradient(90deg, var(--blue-accent) 0%, var(--saffron) 100%);
+
+  /* ---- Typography ----
+     Heading font: placeholder for licensed "TT Interphases" — swap font-family
+     token below once licensed font files are added to /assets/fonts.
+  */
+  --font-heading: "Archivo", "Arial Narrow", sans-serif;
+  --font-sub: "Poppins", "Segoe UI", sans-serif;
+  --font-body: "DM Sans", "Segoe UI", sans-serif;
+
+  --fs-display: clamp(2.75rem, 3.2vw + 2rem, 5.5rem);
+  --fs-h1: clamp(2.25rem, 2.4vw + 1.6rem, 3.75rem);
+  --fs-h2: clamp(1.75rem, 1.4vw + 1.3rem, 2.75rem);
+  --fs-h3: clamp(1.35rem, 0.7vw + 1.1rem, 1.75rem);
+  --fs-h4: clamp(1.1rem, 0.3vw + 1rem, 1.25rem);
+  --fs-lead: clamp(1.05rem, 0.3vw + 0.95rem, 1.25rem);
+  --fs-body: 1rem;
+  --fs-small: 0.875rem;
+  --fs-caption: 0.75rem;
+
+  /* ---- Spacing scale ---- */
+  --sp-1: 0.25rem;
+  --sp-2: 0.5rem;
+  --sp-3: 0.75rem;
+  --sp-4: 1rem;
+  --sp-5: 1.5rem;
+  --sp-6: 2rem;
+  --sp-7: 3rem;
+  --sp-8: 4rem;
+  --sp-9: 6rem;
+  --sp-10: 8rem;
+
+  /* ---- Radii (modern, restrained) ---- */
+  --radius-sm: 8px;
+  --radius-md: 14px;
+  --radius-lg: 24px;
+  --radius-pill: 999px;
+
+  /* ---- Shadows (subtle only — dark-on-dark, so lean on glow rather than drop-shadow) ---- */
+  --shadow-sm: 0 1px 2px rgba(0,0,0,0.24), 0 1px 1px rgba(0,0,0,0.18);
+  --shadow-md: 0 12px 24px -8px rgba(0,0,0,0.45);
+  --shadow-lg: 0 24px 48px -12px rgba(0,0,0,0.55);
+  --shadow-sky: 0 12px 28px -10px rgba(62,134,255,0.45);
+  --shadow-saffron: 0 14px 32px -10px rgba(255,103,31,0.55);
+
+  /* ---- Layout ---- */
+  --container-max: 1280px;
+  --container-pad: clamp(1.25rem, 4vw, 3rem);
+  --header-h: 84px;
+  --ease-premium: cubic-bezier(0.16, 1, 0.3, 1);
+}

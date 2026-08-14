@@ -1,0 +1,44 @@
+[
+  {
+    "index": "01",
+    "key": "technical",
+    "name": "Technical",
+    "summary": "Ball mastery, passing, receiving, dribbling, finishing.",
+    "detail": "Every session begins and ends with the ball. Players build a technical foundation precise enough to execute under pressure, not just in isolation drills."
+  },
+  {
+    "index": "02",
+    "key": "tactical",
+    "name": "Tactical",
+    "summary": "Game understanding, decision-making, positioning and team principles.",
+    "detail": "Players are coached to read the game, not just play it — understanding space, timing and team structure the way Argentine academies have taught for generations."
+  },
+  {
+    "index": "03",
+    "key": "physical",
+    "name": "Physical",
+    "summary": "Speed, agility, coordination, strength and conditioning.",
+    "detail": "Age-appropriate athletic development builds durable, explosive players without compromising long-term physical health."
+  },
+  {
+    "index": "04",
+    "key": "psychological",
+    "name": "Psychological",
+    "summary": "Confidence, discipline, resilience and mentality.",
+    "detail": "Football is decided under pressure. Players are trained to make split-second decisions with composure, on the biggest occasions."
+  },
+  {
+    "index": "05",
+    "key": "social",
+    "name": "Social",
+    "summary": "Teamwork, communication, respect and responsibility.",
+    "detail": "A player's development off the pitch shapes their game on it. We build character alongside craft."
+  },
+  {
+    "index": "06",
+    "key": "performance",
+    "name": "Performance",
+    "summary": "Data, analysis, feedback and individual development planning.",
+    "detail": "Every player's progress is tracked, reviewed and translated into an individual development plan — evidence, not guesswork."
+  }
+]

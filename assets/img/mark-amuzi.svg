@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" fill="none" role="img" aria-label="Amuzi Sports mark">
+  <defs>
+    <linearGradient id="amuziGrad" x1="4" y1="54" x2="56" y2="8" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#3FA9F5"/>
+      <stop offset="0.55" stop-color="#6EC6FF"/>
+      <stop offset="1" stop-color="#BFE8FF"/>
+    </linearGradient>
+  </defs>
+  <path d="M6 50L22 34L32 42L52 14" stroke="url(#amuziGrad)" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M40 14H52V26" stroke="url(#amuziGrad)" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/>
+  <circle cx="52" cy="14" r="5" fill="#D4AF37"/>
+</svg>

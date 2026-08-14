@@ -1,0 +1,101 @@
+<section class="page-hero">
+  <div class="page-hero__bg" aria-hidden="true"></div>
+  <div class="container">
+    <div class="breadcrumb"><a href="index.html">Home</a><span>/</span><span>Contact</span></div>
+    <span class="eyebrow eyebrow--saffron" data-reveal>Get In Touch</span>
+    <h1 data-reveal data-reveal-delay="1">START THE CONVERSATION</h1>
+    <p class="lead" data-reveal data-reveal-delay="2">Whether you're a parent exploring the pathway, a school considering a partnership, or an organisation exploring a partnership with us — tell us a little about you and our team will follow up.</p>
+  </div>
+</section>
+
+<section class="section section--white" id="enquire">
+  <div class="container">
+    <div class="parents-grid">
+      <div>
+        <span class="eyebrow" data-reveal>Direct Contact</span>
+        <h2 data-reveal data-reveal-delay="1" style="margin-top:var(--sp-3);max-width:14ch;">TALK TO OUR TEAM</h2>
+        <div class="contact-methods" data-reveal data-reveal-delay="2">
+          <div class="contact-method"><span class="icon-chip">{{ICON_PIN}}</span><div><strong>Address</strong><span>Kolkata, West Bengal, India<br>Centre addresses published on confirmation</span></div></div>
+          <div class="contact-method"><span class="icon-chip">{{ICON_MAIL}}</span><div><strong>Email</strong><span><a href="mailto:info@amuzi.in">info@amuzi.in</a></span></div></div>
+          <div class="contact-method"><span class="icon-chip">{{ICON_PHONE}}</span><div><strong>Phone</strong><span>+91 00000 00000</span></div></div>
+          <div class="contact-method"><span class="icon-chip">{{ICON_CLOCK}}</span><div><strong>Response Time</strong><span>We aim to respond to every enquiry within 2 working days.</span></div></div>
+        </div>
+      </div>
+
+      <div data-reveal data-reveal-delay="1">
+        <div class="audience-switch" role="tablist" aria-label="Enquiry type">
+          <button class="audience-switch__btn is-active" data-audience-btn="player" type="button">Player / Parent</button>
+          <button class="audience-switch__btn" data-audience-btn="school" type="button">School / Institution</button>
+          <button class="audience-switch__btn" data-audience-btn="partner" type="button">Corporate / Partner</button>
+        </div>
+
+        <div data-audience-panel="player">
+          <form class="form-grid" data-enquiry-form aria-label="Player and parent enquiry form">
+            <input type="hidden" id="enquiry-type" name="enquiry_type" value="player">
+            <div class="form-field"><label for="p-name">Parent / Guardian Name</label><input id="p-name" name="name" type="text" required></div>
+            <div class="form-field"><label for="p-player">Player Name &amp; Age</label><input id="p-player" name="player" type="text" required></div>
+            <div class="form-field"><label for="p-email">Email</label><input id="p-email" name="email" type="email" required></div>
+            <div class="form-field"><label for="p-phone">Phone</label><input id="p-phone" name="phone" type="tel" required></div>
+            <div class="form-field form-field--full"><label for="p-location">City / Location</label><input id="p-location" name="location" type="text"></div>
+            <div class="form-field form-field--full"><label for="p-message">Anything else we should know?</label><textarea id="p-message" name="message"></textarea></div>
+            <div class="form-field--full"><button class="btn btn--saffron btn--block" type="submit">Submit Enquiry</button></div>
+          </form>
+          <div data-form-confirmation hidden style="padding:var(--sp-6);background:var(--pearl);border-radius:var(--radius-md);">
+            <strong>Thank you.</strong> Your enquiry has been noted — our team will follow up shortly.
+          </div>
+        </div>
+
+        <div data-audience-panel="school" hidden>
+          <form class="form-grid" data-enquiry-form aria-label="School and institution enquiry form">
+            <input type="hidden" name="enquiry_type" value="school">
+            <div class="form-field"><label for="s-name">Contact Name</label><input id="s-name" name="name" type="text" required></div>
+            <div class="form-field"><label for="s-org">School / Institution</label><input id="s-org" name="org" type="text" required></div>
+            <div class="form-field"><label for="s-email">Email</label><input id="s-email" name="email" type="email" required></div>
+            <div class="form-field"><label for="s-phone">Phone</label><input id="s-phone" name="phone" type="tel" required></div>
+            <div class="form-field form-field--full"><label for="s-role">Your Role</label><input id="s-role" name="role" type="text"></div>
+            <div class="form-field form-field--full"><label for="s-message">What are you exploring?</label><textarea id="s-message" name="message" placeholder="Curriculum integration, coaching partnership, talent pipeline..."></textarea></div>
+            <div class="form-field--full"><button class="btn btn--saffron btn--block" type="submit">Submit Enquiry</button></div>
+          </form>
+          <div data-form-confirmation hidden style="padding:var(--sp-6);background:var(--pearl);border-radius:var(--radius-md);">
+            <strong>Thank you.</strong> Your partnership enquiry has been noted — our team will follow up shortly.
+          </div>
+        </div>
+
+        <div data-audience-panel="partner" hidden>
+          <form class="form-grid" data-enquiry-form aria-label="Corporate and partner enquiry form">
+            <input type="hidden" name="enquiry_type" value="partner">
+            <div class="form-field"><label for="c-name">Contact Name</label><input id="c-name" name="name" type="text" required></div>
+            <div class="form-field"><label for="c-org">Organisation</label><input id="c-org" name="org" type="text" required></div>
+            <div class="form-field"><label for="c-email">Email</label><input id="c-email" name="email" type="email" required></div>
+            <div class="form-field"><label for="c-phone">Phone</label><input id="c-phone" name="phone" type="tel" required></div>
+            <div class="form-field form-field--full"><label for="c-type">Partnership Interest</label>
+              <select id="c-type" name="interest">
+                <option>AFA Affiliation &amp; Curriculum Partnership</option>
+                <option>Government / Institutional Partnership</option>
+                <option>Corporate / Sponsorship</option>
+                <option>Media / Broadcast</option>
+                <option>Other</option>
+              </select>
+            </div>
+            <div class="form-field form-field--full"><label for="c-message">Tell us about your organisation</label><textarea id="c-message" name="message"></textarea></div>
+            <div class="form-field--full"><button class="btn btn--saffron btn--block" type="submit">Submit Enquiry</button></div>
+          </form>
+          <div data-form-confirmation hidden style="padding:var(--sp-6);background:var(--pearl);border-radius:var(--radius-md);">
+            <strong>Thank you.</strong> Your partnership enquiry has been noted — our team will follow up shortly.
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+(function(){
+  var params = new URLSearchParams(window.location.search);
+  var as = params.get('as');
+  if (as) {
+    var btn = document.querySelector('[data-audience-btn="' + as + '"]');
+    if (btn) btn.click();
+  }
+})();
+</script>

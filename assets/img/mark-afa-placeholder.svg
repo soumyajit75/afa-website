@@ -1,0 +1,11 @@
+<!--
+  PLACEHOLDER PARTNER MARK.
+  The official Argentine Football Association (AFA) crest has not been supplied
+  as a licensed brand asset. This generic monogram badge stands in for it and
+  MUST be replaced with the official AFA logo file (with usage permission
+  confirmed) before this site goes live.
+-->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" fill="none" role="img" aria-label="AFA partner mark placeholder">
+  <path d="M32 3L58 13V30C58 45 47 55 32 61C17 55 6 45 6 30V13L32 3Z" stroke="#0A0A0B" stroke-width="2" fill="#F8F9FA"/>
+  <text x="32" y="39" text-anchor="middle" font-family="Arial, sans-serif" font-weight="700" font-size="17" fill="#0A0A0B" letter-spacing="1">AFA</text>
+</svg>

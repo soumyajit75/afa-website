@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400" fill="none" class="pitch-illustration" aria-hidden="true">
+  <defs>
+    <linearGradient id="illGrad" x1="60" y1="340" x2="340" y2="60" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#3E86FF"/>
+      <stop offset="1" stop-color="#9CC3FF"/>
+    </linearGradient>
+  </defs>
+  <circle cx="200" cy="200" r="150" stroke="url(#illGrad)" stroke-width="1" opacity="0.35"/>
+  <circle cx="200" cy="200" r="100" stroke="url(#illGrad)" stroke-width="1" opacity="0.5"/>
+  <g stroke="url(#illGrad)" stroke-width="1.6" opacity="0.9">
+    <circle cx="200" cy="150" r="34"/>
+    <path d="M200 116L216 138L208 158H192L184 138Z"/>
+    <path d="M166 150L184 138"/>
+    <path d="M234 150L216 138"/>
+    <path d="M192 182L184 202"/>
+    <path d="M208 182L216 202"/>
+  </g>
+  <g stroke="#D4AF37" stroke-width="1.2" opacity="0.6">
+    <path d="M120 300C160 270 240 270 280 300"/>
+    <path d="M110 320C155 288 245 288 290 320"/>
+  </g>
+</svg>

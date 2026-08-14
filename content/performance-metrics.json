@@ -1,0 +1,8 @@
+[
+  { "key": "technical", "label": "Technical", "value": 78 },
+  { "key": "tactical", "label": "Tactical", "value": 71 },
+  { "key": "physical", "label": "Physical", "value": 82 },
+  { "key": "psychological", "label": "Mentality", "value": 68 },
+  { "key": "social", "label": "Teamwork", "value": 85 },
+  { "key": "performance", "label": "Match Impact", "value": 74 }
+]

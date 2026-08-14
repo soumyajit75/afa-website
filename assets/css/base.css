@@ -1,0 +1,175 @@
+/* AMUZI SPORTS — BASE RESET & TYPOGRAPHY */
+
+*, *::before, *::after { box-sizing: border-box; }
+html { -webkit-text-size-adjust: 100%; overflow-x: hidden; }
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--ink);
+  font-family: var(--font-body);
+  font-size: var(--fs-body);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ONE continuous cinematic glow-field behind the entire page — fixed to the
+   viewport (not the document), so there is a single unbroken canvas with no
+   seams between sections, on every page. A position:fixed element (rather
+   than background-attachment:fixed) so it also works correctly on iOS
+   Safari. Every section below is transparent so this shows through. */
+.site-bg {
+  position: fixed;
+  inset: 0;
+  z-index: -2;
+  overflow: hidden;
+}
+.site-bg img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center 25%;
+}
+.site-bg::after {
+  content: "";
+  position: absolute; inset: 0;
+  background: linear-gradient(180deg, rgba(5,12,26,0.5) 0%, rgba(5,12,26,0.22) 32%, rgba(5,12,26,0.65) 100%);
+}
+
+img, svg, video { display: block; max-width: 100%; height: auto; }
+a { color: inherit; text-decoration: none; }
+ul, ol { margin: 0; padding: 0; list-style: none; }
+button { font: inherit; color: inherit; background: none; border: 0; cursor: pointer; }
+input, textarea, select { font: inherit; color: inherit; }
+
+h1, h2, h3, h4 {
+  margin: 0;
+  font-family: var(--font-heading);
+  font-weight: 800;
+  letter-spacing: -0.01em;
+  line-height: 1.05;
+  text-transform: uppercase;
+  color: var(--white);
+}
+h1 { font-size: var(--fs-h1); }
+h2 { font-size: var(--fs-h2); }
+h3 { font-size: var(--fs-h3); }
+h4 { font-size: var(--fs-h4); letter-spacing: 0; text-transform: none; font-weight: 700; }
+
+p { margin: 0; }
+
+.eyebrow {
+  font-family: var(--font-sub);
+  font-weight: 600;
+  font-size: var(--fs-caption);
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--royal);
+  display: inline-flex;
+  align-items: center;
+  gap: var(--sp-2);
+}
+.eyebrow::before {
+  content: "";
+  width: 22px;
+  height: 2px;
+  background: var(--gradient-sky);
+  border-radius: var(--radius-pill);
+}
+.eyebrow--light { color: var(--sky); }
+.eyebrow--light::before { background: var(--gradient-sky); }
+/* Argentina x India — the signature accent bar carrying both brand colours */
+.eyebrow--saffron { color: var(--white); }
+.eyebrow--saffron::before { width: 36px; height: 3px; background: var(--gradient-flag); }
+
+.lead {
+  font-size: var(--fs-lead);
+  line-height: 1.55;
+  color: var(--ink-65);
+  max-width: 56ch;
+}
+
+.small { font-size: var(--fs-small); }
+.caption {
+  font-size: var(--fs-caption);
+  color: var(--ink-45);
+  line-height: 1.5;
+}
+
+.note-flag {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-family: var(--font-sub);
+  font-size: 0.7rem;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--blue-accent-soft);
+  background: rgba(62,134,255,0.14);
+  border: 1px solid rgba(62,134,255,0.4);
+  border-radius: var(--radius-pill);
+  padding: 4px 10px;
+}
+
+/* Layout helpers */
+.container {
+  width: 100%;
+  max-width: var(--container-max);
+  margin-inline: auto;
+  padding-inline: var(--container-pad);
+}
+
+/* Sections are transparent — the single fixed .site-bg glow-field shows
+   through continuously behind the whole page, with no per-section seams. */
+.section { padding-block: var(--sp-9); position: relative; background: transparent; }
+.section--tight { padding-block: var(--sp-7); }
+.section--dark, .section--pearl, .section--white { background: transparent; color: var(--ink-85); }
+.section--dark h1, .section--dark h2, .section--dark h3 { color: var(--white); }
+.trust-bar { position: relative; background: transparent; }
+
+.stack { display: flex; flex-direction: column; }
+.cluster { display: flex; flex-wrap: wrap; align-items: center; }
+
+.visually-hidden {
+  position: absolute; width: 1px; height: 1px;
+  padding: 0; margin: -1px; overflow: hidden;
+  clip: rect(0,0,0,0); white-space: nowrap; border: 0;
+}
+
+.skip-link {
+  position: absolute; left: var(--sp-4); top: -60px;
+  background: var(--saffron); color: var(--white);
+  padding: var(--sp-3) var(--sp-5); border-radius: var(--radius-sm);
+  z-index: 1000; transition: top 0.2s var(--ease-premium);
+  font-family: var(--font-sub); font-weight: 600;
+}
+.skip-link:focus { top: var(--sp-4); }
+
+:focus-visible {
+  outline: 2px solid var(--blue-accent-soft);
+  outline-offset: 3px;
+}
+
+::selection { background: var(--saffron); color: var(--white); }
+
+/* Reveal-on-scroll utility (JS toggles .is-visible) */
+[data-reveal] {
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity 0.7s var(--ease-premium), transform 0.7s var(--ease-premium);
+}
+[data-reveal].is-visible { opacity: 1; transform: translateY(0); }
+[data-reveal-delay="1"] { transition-delay: 0.08s; }
+[data-reveal-delay="2"] { transition-delay: 0.16s; }
+[data-reveal-delay="3"] { transition-delay: 0.24s; }
+[data-reveal-delay="4"] { transition-delay: 0.32s; }
+[data-reveal-delay="5"] { transition-delay: 0.4s; }

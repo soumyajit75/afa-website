@@ -1,0 +1,50 @@
+[
+  {
+    "stage": "01",
+    "key": "feeder",
+    "name": "Feeder Centres",
+    "tagline": "Community & Grassroots",
+    "ageRange": "Ages 6–12",
+    "summary": "The widest part of the pyramid. Every child who touches a ball at one of our feeder centres or community programmes is a possibility worth watching.",
+    "objectives": [
+      "Introduction to ball mastery & movement",
+      "Football as habit, discipline and joy",
+      "First exposure to structured coaching"
+    ],
+    "intensity": "2–3 sessions / week",
+    "evaluation": "Ongoing coach observation",
+    "progression": "Standout players identified for Intermediate Centre trials"
+  },
+  {
+    "stage": "02",
+    "key": "intermediate",
+    "name": "Intermediate Centres",
+    "tagline": "Structured Academy",
+    "ageRange": "Ages 10–16",
+    "summary": "Where promise becomes a pathway. Players train under AFA-certified coaches, many for the first time under a formal development contract.",
+    "objectives": [
+      "Technical & tactical curriculum build-up",
+      "Competitive league & tournament exposure",
+      "Individual development plans begin"
+    ],
+    "intensity": "4–5 sessions / week",
+    "evaluation": "Quarterly performance review + video analysis",
+    "progression": "Top performers scouted for the Centre of Excellence"
+  },
+  {
+    "stage": "03",
+    "key": "coe",
+    "name": "Centre of Excellence",
+    "tagline": "Flagship Destination",
+    "ageRange": "Ages 14–19",
+    "summary": "Where India meets the world. Full-time coaching, sports science, education and international exposure inside our flagship Centre of Excellence.",
+    "objectives": [
+      "Full-time elite training environment",
+      "Sports science, psychology & nutrition support",
+      "International exposure across South America, Africa, Europe and North America"
+    ],
+    "intensity": "Full-time residential / day programme",
+    "evaluation": "Individual player report cards & scouting profiles",
+    "progression": "Pathway to professional clubs in India and abroad"
+  }
+]

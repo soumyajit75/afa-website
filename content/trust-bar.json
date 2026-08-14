@@ -1,0 +1,32 @@
+[
+  {
+    "icon": "shield",
+    "label": "Amuzi Centre of Excellence",
+    "detail": "Flagship destination"
+  },
+  {
+    "icon": "afa",
+    "label": "Argentine Football Association",
+    "detail": "Strategic methodology partner"
+  },
+  {
+    "icon": "whistle",
+    "label": "Certified Coaching",
+    "detail": "Every coach AFA-methodology certified"
+  },
+  {
+    "icon": "chart",
+    "label": "Performance Analysis",
+    "detail": "AI-assisted video & data scouting"
+  },
+  {
+    "icon": "target",
+    "label": "Talent Identification",
+    "detail": "Merit over geography"
+  },
+  {
+    "icon": "globe",
+    "label": "International Pathway",
+    "detail": "South America, Africa, Europe & North America"
+  }
+]
