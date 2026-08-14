@@ -393,7 +393,8 @@
 .afa-lockup img.afa-lockup__acfe { height: 44px; width: auto; }
 .afa-lockup img.afa-lockup__afa-crest { height: 58px; width: auto; }
 .afa-lockup .divider-x { width: 1px; height: 40px; background: var(--ink-24); }
-.afa-credentials { display: grid; grid-template-columns: repeat(3,1fr); gap: var(--sp-4); margin-top: var(--sp-8); }
+.afa-credentials { display: grid; grid-template-columns: 1fr; gap: var(--sp-4); margin-top: var(--sp-8); }
+@media (min-width: 560px) { .afa-credentials { grid-template-columns: repeat(3,1fr); } }
 .afa-credential { position: relative; overflow: hidden; background: rgba(255,255,255,0.045); border-radius: var(--radius-lg); padding: var(--sp-6); text-align: center; border: 1px solid var(--ink-12); }
 .afa-credential::before {
   content: "";
@@ -511,7 +512,19 @@
 .final-cta .eyebrow--saffron { justify-content: center; }
 .final-cta h2 { color: var(--white); max-width: 22ch; margin-inline: auto; }
 .final-cta p { margin-top: var(--sp-4); max-width: 50ch; margin-inline: auto; color: var(--mist-85); font-size: var(--fs-lead); }
-.final-cta__actions { margin-top: var(--sp-7); display: flex; flex-wrap: wrap; gap: var(--sp-4); justify-content: center; }
+/* Grid (not flex) so every button in the group is the same width,
+   regardless of label length — short and long labels no longer produce
+   differently-sized pills. Collapses to one equal-width column per row on
+   narrow screens automatically. */
+.final-cta__actions {
+  margin-top: var(--sp-7);
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+  gap: var(--sp-4);
+  max-width: 680px;
+  margin-inline: auto;
+}
+.final-cta__actions .btn { width: 100%; }
 .final-cta .btn--ghost { border-color: rgba(255,255,255,0.35); color: var(--white); }
 .final-cta .btn--ghost:hover { background: rgba(255,255,255,0.12); border-color: var(--white); }
 
