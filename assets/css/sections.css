@@ -275,43 +275,92 @@
   width: 34px; height: 34px; opacity: 0.5;
 }
 
-/* ================= PATHWAY (pyramid) =================
-   Feeder Centres are the widest, at the base; the Centre of Excellence is
-   the narrowest, at the peak — the shape itself tells the story. Source
-   order stays Feeder -> Intermediate -> CoE (correct reading order for
-   screen readers/SEO); column-reverse flips it visually so CoE renders on
-   top without reordering the markup. */
+/* ================= PATHWAY PYRAMID (DIKW-style diagram) =================
+   A compact, seamless triangle — three trapezoid bands stacked with zero
+   gap, each one's top edge exactly matching the next tier's bottom edge
+   (the inset on each band is a % of its OWN width, calibrated against the
+   width ratio to the tier above, so the two outer diagonal sides run
+   unbroken from base to apex). CoE sits at the peak, Feeder at the base.
+   Only the stage number lives inside each band (the narrow apex band has
+   no room for a full label); full names sit in the legend underneath. */
+.pathway-pyramid {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--sp-8);
+  margin: var(--sp-8) auto 0;
+  max-width: 640px;
+}
+.pathway-pyramid__shape {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+}
+.pathway-pyramid__tier {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: clamp(52px, 11vw, 78px);
+  color: var(--white);
+  font-family: var(--font-heading);
+  font-size: clamp(1rem, 3vw, 1.3rem);
+  border-top: 1px solid rgba(255,255,255,0.18);
+}
+.pathway-pyramid__tier:first-child { border-top: none; }
+.pathway-pyramid__tier--coe {
+  width: 34%;
+  min-width: 96px;
+  clip-path: polygon(32% 0, 68% 0, 100% 100%, 0 100%);
+  background: linear-gradient(135deg, #FF9354, var(--saffron));
+}
+.pathway-pyramid__tier--intermediate {
+  width: 64%;
+  clip-path: polygon(23% 0, 77% 0, 100% 100%, 0 100%);
+  background: linear-gradient(135deg, #2E5FA3, #1C3F76);
+}
+.pathway-pyramid__tier--feeder {
+  width: 100%;
+  clip-path: polygon(18% 0, 82% 0, 100% 100%, 0 100%);
+  background: linear-gradient(135deg, #16305C, var(--bg));
+}
+.pathway-pyramid__legend {
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-3);
+  width: 100%;
+  max-width: 420px;
+}
+.pathway-pyramid__legend-item {
+  display: flex;
+  align-items: center;
+  gap: var(--sp-3);
+  font-family: var(--font-sub);
+  font-size: 0.9rem;
+  color: var(--ink-65);
+}
+.pathway-pyramid__legend-item strong { color: var(--saffron); margin-right: 6px; }
+.pathway-pyramid__swatch { width: 12px; height: 12px; border-radius: 3px; flex: none; }
+.pathway-pyramid__swatch--coe { background: linear-gradient(135deg, #FF9354, var(--saffron)); }
+.pathway-pyramid__swatch--intermediate { background: linear-gradient(135deg, #2E5FA3, #1C3F76); }
+.pathway-pyramid__swatch--feeder { background: linear-gradient(135deg, #16305C, var(--bg)); }
+
+/* ================= PATHWAY (detail cards) =================
+   The three stages read as a plain, evenly-sized set of cards — the
+   pyramid shape itself is told by the diagram above, so these stay
+   uniform and fully readable regardless of how much text a stage has. */
 .pathway { position: relative; }
 .pathway-track {
   display: flex;
-  flex-direction: column-reverse;
+  flex-direction: column;
   align-items: center;
-  gap: var(--sp-2);
+  gap: var(--sp-6);
   margin-top: var(--sp-8);
   counter-reset: stage;
 }
-/* A literal apex point capping the top (CoE) tier, and a foundation bar
-   grounding the bottom (Feeder) tier — both are flex items of the reversed
-   stack, so source-order placement does the positioning for us. */
-.pathway-track::before {
-  content: "";
-  width: min(94%, 900px);
-  height: 3px;
-  border-radius: 2px;
-  background: linear-gradient(90deg, transparent, rgba(255,103,31,0.45), transparent);
-}
-.pathway-track::after {
-  content: "";
-  width: 0; height: 0;
-  border-left: 13px solid transparent;
-  border-right: 13px solid transparent;
-  border-bottom: 18px solid rgba(255,103,31,0.55);
-  filter: drop-shadow(0 0 10px rgba(255,103,31,0.4));
-}
-
 .pathway-stage {
   position: relative;
-  width: 92%;
+  width: 100%;
   max-width: 680px;
   background: rgba(255,255,255,0.045);
   border: 1px solid var(--ink-12);
@@ -319,24 +368,9 @@
   display: flex;
   flex-direction: column;
   gap: var(--sp-4);
-  /* Top edge trimmed inward by a fixed pixel amount (not a percentage) —
-     combined with the width taper below this reads as one continuous
-     triangle rather than three stacked rectangles. Padding is always
-     larger than the trim, so no text is ever cut. */
-  clip-path: polygon(11px 0, calc(100% - 11px) 0, 100% 100%, 0 100%);
 }
-/* Base of the pyramid — widest tier, on every viewport. */
-.pathway-stage--feeder { width: 100%; max-width: 1040px; }
-/* Peak of the pyramid — narrowest tier, on every viewport, so the taper
-   reads as a triangle even on a phone screen. */
-.pathway-stage--coe { width: 62%; max-width: 400px; }
-@media (max-width: 400px) {
-  .pathway-stage { padding-inline: var(--sp-5); }
-}
-@media (min-width: 560px) {
-  .pathway-stage { width: 78%; clip-path: polygon(22px 0, calc(100% - 22px) 0, 100% 100%, 0 100%); }
-  .pathway-stage--feeder { width: 100%; }
-  .pathway-stage--coe { width: 42%; }
+@media (min-width: 960px) {
+  .pathway-stage { padding: var(--sp-7) var(--sp-6); }
 }
 .pathway-stage::before {
   content: "";
@@ -346,9 +380,6 @@
   pointer-events: none;
 }
 .pathway-stage > * { position: relative; z-index: 1; }
-@media (min-width: 960px) {
-  .pathway-stage { padding: var(--sp-7) var(--sp-6); }
-}
 .pathway-stage__head { display: flex; align-items: center; justify-content: space-between; }
 .pathway-stage__num {
   font-family: var(--font-heading);

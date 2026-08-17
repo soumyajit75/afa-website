@@ -136,6 +136,26 @@ def render_pathway(variant="home") -> str:
     return "".join(out)
 
 
+def render_pathway_pyramid() -> str:
+    stages = load_json("pathway")
+    by_key = {s["key"]: s for s in stages}
+    order = ["coe", "intermediate", "feeder"]
+    tiers, legend = [], []
+    for key in order:
+        s = by_key[key]
+        tiers.append(f'<div class="pathway-pyramid__tier pathway-pyramid__tier--{key}"><span>{s["stage"]}</span></div>')
+        legend.append(f"""
+        <div class="pathway-pyramid__legend-item">
+          <span class="pathway-pyramid__swatch pathway-pyramid__swatch--{key}"></span>
+          <span><strong>{s['stage']}</strong> {s['name']}</span>
+        </div>""")
+    return f"""
+    <div class="pathway-pyramid" data-reveal aria-hidden="true">
+      <div class="pathway-pyramid__shape">{"".join(tiers)}</div>
+      <div class="pathway-pyramid__legend">{"".join(legend)}</div>
+    </div>"""
+
+
 def render_afa_credentials() -> str:
     creds = load_json("afa-credentials")
     out = []
@@ -354,6 +374,7 @@ COMPONENT_SLOTS = {
     "{{TRUST_BAR}}": render_trust_bar,
     "{{PHILOSOPHY_PILLARS}}": render_philosophy,
     "{{PATHWAY_STAGES}}": render_pathway,
+    "{{PATHWAY_PYRAMID}}": render_pathway_pyramid,
     "{{AFA_CREDENTIALS}}": render_afa_credentials,
     "{{PERFORMANCE_METRICS}}": render_performance_metrics,
     "{{RADAR_CHART}}": radar_chart_svg,
