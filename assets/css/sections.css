@@ -291,14 +291,17 @@
   align-items: center;
   margin-top: var(--sp-8);
 }
+/* The apex cap: a real triangle (not a trapezoid) sized to exactly match
+   CoE's own clipped top-width, so it continues CoE's taper to an actual
+   point rather than sitting as a small disconnected ornament. */
 .pathway-pyramid::after {
   content: "";
-  width: 0; height: 0;
-  border-left: 15px solid transparent;
-  border-right: 15px solid transparent;
-  border-bottom: 20px solid var(--saffron);
-  filter: drop-shadow(0 0 10px rgba(255,103,31,0.45));
-  margin-bottom: 2px;
+  width: 55%;
+  max-width: 529px;
+  height: clamp(28px, 6vw, 56px);
+  clip-path: polygon(50% 0, 100% 100%, 0 100%);
+  background: var(--saffron);
+  filter: drop-shadow(0 0 14px rgba(255,103,31,0.5));
 }
 .pathway-pyramid__tier {
   position: relative;
@@ -317,7 +320,8 @@
   color: var(--white);
   clip-path: polygon(9% 0, 91% 0, 100% 100%, 0 100%);
 }
-.pathway-pyramid__tier:not(:last-child) { border-top: 1px solid rgba(255,255,255,0.18); }
+.pathway-pyramid__tier--feeder,
+.pathway-pyramid__tier--intermediate { border-top: 1px solid rgba(255,255,255,0.18); }
 .pathway-pyramid__tier--feeder { max-width: 960px; background: linear-gradient(160deg, #16305C, var(--bg)); }
 .pathway-pyramid__tier--intermediate { width: 82%; max-width: 787px; background: linear-gradient(160deg, #2E5FA3, #1C3F76); }
 .pathway-pyramid__tier--coe { width: 67%; max-width: 645px; background: linear-gradient(160deg, #FF9354, var(--saffron)); }
