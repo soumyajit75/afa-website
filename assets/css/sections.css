@@ -286,14 +286,32 @@
   display: flex;
   flex-direction: column-reverse;
   align-items: center;
-  gap: var(--sp-6);
+  gap: var(--sp-2);
   margin-top: var(--sp-8);
   counter-reset: stage;
+}
+/* A literal apex point capping the top (CoE) tier, and a foundation bar
+   grounding the bottom (Feeder) tier — both are flex items of the reversed
+   stack, so source-order placement does the positioning for us. */
+.pathway-track::before {
+  content: "";
+  width: min(94%, 900px);
+  height: 3px;
+  border-radius: 2px;
+  background: linear-gradient(90deg, transparent, rgba(255,103,31,0.45), transparent);
+}
+.pathway-track::after {
+  content: "";
+  width: 0; height: 0;
+  border-left: 13px solid transparent;
+  border-right: 13px solid transparent;
+  border-bottom: 18px solid rgba(255,103,31,0.55);
+  filter: drop-shadow(0 0 10px rgba(255,103,31,0.4));
 }
 
 .pathway-stage {
   position: relative;
-  width: 100%;
+  width: 92%;
   max-width: 680px;
   background: rgba(255,255,255,0.045);
   border: 1px solid var(--ink-12);
@@ -301,18 +319,24 @@
   display: flex;
   flex-direction: column;
   gap: var(--sp-4);
+  /* Top edge trimmed inward by a fixed pixel amount (not a percentage) —
+     combined with the width taper below this reads as one continuous
+     triangle rather than three stacked rectangles. Padding is always
+     larger than the trim, so no text is ever cut. */
+  clip-path: polygon(11px 0, calc(100% - 11px) 0, 100% 100%, 0 100%);
 }
-/* Base of the pyramid — widest tier. */
-.pathway-stage--feeder { max-width: 960px; }
-/* Peak of the pyramid — narrowest tier. On very narrow phones all three
-   stay full-width (so card content — bullet lists, meta rows — never gets
-   squeezed); the taper itself appears once there's room to shrink without
-   hurting readability. */
-.pathway-stage--coe { max-width: 460px; }
+/* Base of the pyramid — widest tier, on every viewport. */
+.pathway-stage--feeder { width: 100%; max-width: 1040px; }
+/* Peak of the pyramid — narrowest tier, on every viewport, so the taper
+   reads as a triangle even on a phone screen. */
+.pathway-stage--coe { width: 62%; max-width: 400px; }
+@media (max-width: 400px) {
+  .pathway-stage { padding-inline: var(--sp-5); }
+}
 @media (min-width: 560px) {
-  .pathway-stage { width: 88%; }
+  .pathway-stage { width: 78%; clip-path: polygon(22px 0, calc(100% - 22px) 0, 100% 100%, 0 100%); }
   .pathway-stage--feeder { width: 100%; }
-  .pathway-stage--coe { width: 64%; }
+  .pathway-stage--coe { width: 42%; }
 }
 .pathway-stage::before {
   content: "";
@@ -527,12 +551,20 @@
 .final-cta__actions {
   margin-top: var(--sp-7);
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
   gap: var(--sp-4);
   max-width: 680px;
   margin-inline: auto;
 }
-.final-cta__actions .btn { width: 100%; }
+/* Unconditional (not just under some breakpoint) — labels like "School &
+   Institutional Enquiries" always wrap to fit their column, at every
+   viewport width, never forcing the page wider than the screen. */
+.final-cta__actions .btn {
+  width: 100%;
+  white-space: normal;
+  overflow-wrap: break-word;
+  word-break: break-word;
+}
 .final-cta .btn--ghost { border-color: rgba(255,255,255,0.35); color: var(--white); }
 .final-cta .btn--ghost:hover { background: rgba(255,255,255,0.12); border-color: var(--white); }
 
