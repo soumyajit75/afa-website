@@ -275,72 +275,96 @@
   width: 34px; height: 34px; opacity: 0.5;
 }
 
-/* ================= PATHWAY PYRAMID (DIKW-style, content inside) =================
-   The full stage content (name, summary, objectives, meta) lives directly
-   inside each trapezoid tier — no separate rectangular cards. Tiers are
-   stacked with zero gap; each one's clip-path trims its OWN top corners by
-   a fixed 9%, so tier N+1 is deliberately sized to exactly the clipped
-   top-width of tier N below it — the two outer sides read as one
-   unbroken diagonal line from the Feeder base to the CoE apex. Source
-   order stays Feeder -> Intermediate -> CoE (correct reading order);
-   column-reverse flips it visually so CoE renders on top. */
+/* ================= PATHWAY STAIRCASE =================
+   Three plain rectangular steps (no clip-path, no width-matching math —
+   the trapezoid/pyramid approach kept producing edge cases at odd
+   viewports) climbing to the right as they rise. Each step's own width
+   is (100% - its left indent), so margin-left + width always sums to
+   100% by construction — it can never overflow its row at any viewport.
+   Source order stays Feeder -> Intermediate -> CoE (correct reading
+   order); column-reverse flips it visually so CoE sits at the top of
+   the stairs. A "riser" caption in the gap between two steps names
+   where that step leads next. */
 .pathway { position: relative; }
-.pathway-pyramid {
+.pathway-stairs {
   display: flex;
   flex-direction: column-reverse;
-  align-items: center;
+  gap: var(--sp-5);
   margin-top: var(--sp-8);
 }
-/* The apex cap: a real triangle (not a trapezoid) sized to exactly match
-   CoE's own clipped top-width, so it continues CoE's taper to an actual
-   point rather than sitting as a small disconnected ornament. */
-.pathway-pyramid::after {
-  content: "";
-  width: 55%;
-  max-width: 529px;
-  height: clamp(28px, 6vw, 56px);
-  clip-path: polygon(50% 0, 100% 100%, 0 100%);
-  background: var(--saffron);
-  filter: drop-shadow(0 0 14px rgba(255,103,31,0.5));
-}
-.pathway-pyramid__tier {
+.pathway-stairs__step {
   position: relative;
   width: 100%;
-  padding-block: var(--sp-6);
-  /* Percentage padding on a flex item resolves against the flex
-     CONTAINER's width (same for all three tiers) — the clip-path inset
-     below resolves against each tier's OWN (narrower) width instead, so
-     this 13% is deliberately wider than the 9% clip on every tier,
-     keeping the header row clear of the clipped corners at any
-     viewport, not just the mobile width this was first checked at. */
-  padding-inline: clamp(20px, 13%, 6rem);
+  border-radius: var(--radius-lg);
+  border: 1px solid rgba(255,255,255,0.14);
+  padding: var(--sp-6);
   display: flex;
   flex-direction: column;
   gap: var(--sp-4);
   color: var(--white);
-  clip-path: polygon(9% 0, 91% 0, 100% 100%, 0 100%);
 }
-.pathway-pyramid__tier--feeder,
-.pathway-pyramid__tier--intermediate { border-top: 1px solid rgba(255,255,255,0.18); }
-.pathway-pyramid__tier--feeder { max-width: 960px; background: linear-gradient(160deg, #16305C, var(--bg)); }
-.pathway-pyramid__tier--intermediate { width: 82%; max-width: 787px; background: linear-gradient(160deg, #2E5FA3, #1C3F76); }
-.pathway-pyramid__tier--coe { width: 67%; max-width: 645px; background: linear-gradient(160deg, #FF9354, var(--saffron)); }
 @media (min-width: 960px) {
-  .pathway-pyramid__tier { padding-block: var(--sp-7); }
+  .pathway-stairs__step { padding: var(--sp-7) var(--sp-6); }
 }
-.pathway-pyramid__head { display: flex; align-items: center; justify-content: space-between; }
-.pathway-pyramid__num { font-family: var(--font-heading); font-size: 2.2rem; color: rgba(255,255,255,0.85); }
-.pathway-pyramid__age { font-family: var(--font-sub); font-size: 0.72rem; text-transform: uppercase; letter-spacing: 0.05em; color: var(--white); background: rgba(255,255,255,0.2); border: 1px solid rgba(255,255,255,0.3); padding: 5px 10px; border-radius: var(--radius-pill); }
-.pathway-pyramid__name { font-family: var(--font-heading); text-transform: uppercase; font-size: 1.6rem; color: var(--white); }
-.pathway-pyramid__tag { font-family: var(--font-sub); font-size: 0.8rem; color: rgba(255,255,255,0.6); text-transform: uppercase; letter-spacing: 0.04em; }
-.pathway-pyramid__summary { color: rgba(255,255,255,0.78); font-size: 0.92rem; }
-.pathway-pyramid__list { display: flex; flex-direction: column; gap: 8px; margin-top: var(--sp-2); }
-.pathway-pyramid__list li { display: flex; gap: 8px; font-size: 0.86rem; color: rgba(255,255,255,0.78); }
-.pathway-pyramid__list li::before { content: ""; width: 5px; height: 5px; border-radius: 50%; background: rgba(255,255,255,0.85); margin-top: 8px; flex: none; }
-.pathway-pyramid__meta { margin-top: auto; padding-top: var(--sp-4); border-top: 1px solid rgba(255,255,255,0.2); display: flex; flex-direction: column; gap: 6px; }
-.pathway-pyramid__meta-row { display: flex; justify-content: space-between; gap: var(--sp-3); font-size: 0.78rem; }
-.pathway-pyramid__meta-row span:first-child { color: rgba(255,255,255,0.6); }
-.pathway-pyramid__meta-row span:last-child { font-weight: 600; text-align: right; color: var(--white); }
+.pathway-stairs__step--feeder { background: linear-gradient(160deg, #16305C, var(--bg)); }
+.pathway-stairs__step--intermediate {
+  width: 90%;
+  margin-left: 10%;
+  background: linear-gradient(160deg, #2E5FA3, #1C3F76);
+}
+.pathway-stairs__step--coe {
+  width: 80%;
+  margin-left: 20%;
+  background: linear-gradient(160deg, #FF9354, var(--saffron));
+  border-color: rgba(255,255,255,0.35);
+  box-shadow: 0 0 48px rgba(255,103,31,0.35);
+}
+.pathway-stairs__destination {
+  align-self: flex-start;
+  font-family: var(--font-sub);
+  font-size: 0.7rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--white);
+  background: rgba(255,255,255,0.22);
+  border: 1px solid rgba(255,255,255,0.35);
+  padding: 4px 12px;
+  border-radius: var(--radius-pill);
+}
+.pathway-stairs__riser {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-family: var(--font-sub);
+  font-size: 0.78rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--saffron);
+}
+.pathway-stairs__riser--intermediate { margin-left: 10%; }
+.pathway-stairs__riser--coe { margin-left: 20%; }
+.pathway-stairs__riser-arrow {
+  width: 0; height: 0;
+  border-left: 5px solid transparent;
+  border-right: 5px solid transparent;
+  border-bottom: 8px solid var(--saffron);
+  flex: none;
+}
+.pathway-stairs__head { display: flex; align-items: center; justify-content: space-between; }
+.pathway-stairs__num { font-family: var(--font-heading); font-size: 2.2rem; color: rgba(255,255,255,0.85); }
+.pathway-stairs__age { font-family: var(--font-sub); font-size: 0.72rem; text-transform: uppercase; letter-spacing: 0.05em; color: var(--white); background: rgba(255,255,255,0.2); border: 1px solid rgba(255,255,255,0.3); padding: 5px 10px; border-radius: var(--radius-pill); }
+.pathway-stairs__name { font-family: var(--font-heading); text-transform: uppercase; font-size: 1.6rem; color: var(--white); }
+.pathway-stairs__tag { font-family: var(--font-sub); font-size: 0.8rem; color: rgba(255,255,255,0.6); text-transform: uppercase; letter-spacing: 0.04em; }
+.pathway-stairs__summary { color: rgba(255,255,255,0.78); font-size: 0.92rem; }
+.pathway-stairs__list { display: flex; flex-direction: column; gap: 8px; margin-top: var(--sp-2); }
+.pathway-stairs__list li { display: flex; gap: 8px; font-size: 0.86rem; color: rgba(255,255,255,0.78); }
+.pathway-stairs__list li::before { content: ""; width: 5px; height: 5px; border-radius: 50%; background: rgba(255,255,255,0.85); margin-top: 8px; flex: none; }
+.pathway-stairs__meta { margin-top: auto; padding-top: var(--sp-4); border-top: 1px solid rgba(255,255,255,0.2); display: flex; flex-direction: column; gap: 6px; }
+.pathway-stairs__meta-row { display: flex; justify-content: space-between; gap: var(--sp-3); font-size: 0.78rem; }
+.pathway-stairs__meta-row span:first-child { color: rgba(255,255,255,0.6); }
+.pathway-stairs__meta-row span:last-child { font-weight: 600; text-align: right; color: var(--white); }
 
 .pathway-note { margin-top: var(--sp-7); display: flex; align-items: center; gap: var(--sp-3); }
 
