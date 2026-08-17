@@ -294,7 +294,7 @@
 .pathway-stage {
   position: relative;
   width: 100%;
-  max-width: 620px;
+  max-width: 680px;
   background: rgba(255,255,255,0.045);
   border: 1px solid var(--ink-12);
   padding: var(--sp-6);
@@ -303,9 +303,17 @@
   gap: var(--sp-4);
 }
 /* Base of the pyramid — widest tier. */
-.pathway-stage--feeder { max-width: 920px; }
-/* Peak of the pyramid — narrowest tier. */
-.pathway-stage--coe { max-width: 440px; }
+.pathway-stage--feeder { max-width: 960px; }
+/* Peak of the pyramid — narrowest tier. On very narrow phones all three
+   stay full-width (so card content — bullet lists, meta rows — never gets
+   squeezed); the taper itself appears once there's room to shrink without
+   hurting readability. */
+.pathway-stage--coe { max-width: 460px; }
+@media (min-width: 560px) {
+  .pathway-stage { width: 88%; }
+  .pathway-stage--feeder { width: 100%; }
+  .pathway-stage--coe { width: 64%; }
+}
 .pathway-stage::before {
   content: "";
   position: absolute; inset: 0;
