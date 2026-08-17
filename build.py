@@ -105,43 +105,41 @@ def render_philosophy() -> str:
     return "".join(out)
 
 
-def render_pathway_stairs() -> str:
+def render_pathway_flow() -> str:
     stages = load_json("pathway")
-    riser_target = {"feeder": "intermediate", "intermediate": "coe"}
+    arrow_svg = (
+        '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4">'
+        '<path d="M5 12h14M13 6l6 6-6 6"/></svg>'
+    )
     out = []
-    for s in stages:
+    for i, s in enumerate(stages):
         objectives = "".join(f"<li>{o}</li>" for o in s["objectives"])
         destination_tag = (
-            '<span class="pathway-stairs__destination">The Destination</span>'
+            '<span class="pathway-flow__destination">The Destination</span>'
             if s["key"] == "coe" else ""
         )
         out.append(f"""
-        <div class="pathway-stairs__step pathway-stairs__step--{s['key']}" data-reveal>
+        <div class="pathway-flow__card pathway-flow__card--{s['key']}" data-reveal>
           {destination_tag}
-          <div class="pathway-stairs__head">
-            <span class="pathway-stairs__num">{s['stage']}</span>
-            <span class="pathway-stairs__age">{s['ageRange']}</span>
+          <div class="pathway-flow__head">
+            <span class="pathway-flow__num">{s['stage']}</span>
+            <span class="pathway-flow__age">{s['ageRange']}</span>
           </div>
           <div>
-            <h3 class="pathway-stairs__name">{s['name']}</h3>
-            <span class="pathway-stairs__tag">{s['tagline']}</span>
+            <h3 class="pathway-flow__name">{s['name']}</h3>
+            <span class="pathway-flow__tag">{s['tagline']}</span>
           </div>
-          <p class="pathway-stairs__summary">{s['summary']}</p>
-          <ul class="pathway-stairs__list">{objectives}</ul>
-          <div class="pathway-stairs__meta">
-            <div class="pathway-stairs__meta-row"><span>Intensity</span><span>{s['intensity']}</span></div>
-            <div class="pathway-stairs__meta-row"><span>Evaluation</span><span>{s['evaluation']}</span></div>
-            <div class="pathway-stairs__meta-row"><span>Progression</span><span>{s['progression']}</span></div>
+          <p class="pathway-flow__summary">{s['summary']}</p>
+          <ul class="pathway-flow__list">{objectives}</ul>
+          <div class="pathway-flow__meta">
+            <div class="pathway-flow__meta-row"><span>Intensity</span><span>{s['intensity']}</span></div>
+            <div class="pathway-flow__meta-row"><span>Evaluation</span><span>{s['evaluation']}</span></div>
+            <div class="pathway-flow__meta-row"><span>Progression</span><span>{s['progression']}</span></div>
           </div>
         </div>""")
-        target = riser_target.get(s["key"])
-        if target:
-            target_name = next(t["name"] for t in stages if t["key"] == target)
-            out.append(f"""
-        <div class="pathway-stairs__riser pathway-stairs__riser--{target}">
-          <span class="pathway-stairs__riser-arrow"></span>Progresses to {target_name}
-        </div>""")
-    return f'<div class="pathway-stairs">{"".join(out)}</div>'
+        if i < len(stages) - 1:
+            out.append(f'<div class="pathway-flow__arrow" aria-hidden="true">{arrow_svg}</div>')
+    return f'<div class="pathway-flow">{"".join(out)}</div>'
 
 
 def render_afa_credentials() -> str:
@@ -361,7 +359,7 @@ NAV_KEYS = {
 COMPONENT_SLOTS = {
     "{{TRUST_BAR}}": render_trust_bar,
     "{{PHILOSOPHY_PILLARS}}": render_philosophy,
-    "{{PATHWAY_STAIRS}}": render_pathway_stairs,
+    "{{PATHWAY_FLOW}}": render_pathway_flow,
     "{{AFA_CREDENTIALS}}": render_afa_credentials,
     "{{PERFORMANCE_METRICS}}": render_performance_metrics,
     "{{RADAR_CHART}}": radar_chart_svg,

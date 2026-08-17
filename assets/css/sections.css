@@ -275,26 +275,38 @@
   width: 34px; height: 34px; opacity: 0.5;
 }
 
-/* ================= PATHWAY STAIRCASE =================
-   Three plain rectangular steps (no clip-path, no width-matching math —
-   the trapezoid/pyramid approach kept producing edge cases at odd
-   viewports) climbing to the right as they rise. Each step's own width
-   is (100% - its left indent), so margin-left + width always sums to
-   100% by construction — it can never overflow its row at any viewport.
-   Source order stays Feeder -> Intermediate -> CoE (correct reading
-   order); column-reverse flips it visually so CoE sits at the top of
-   the stairs. A "riser" caption in the gap between two steps names
-   where that step leads next. */
+/* ================= PATHWAY FLOW (side by side + arrows) =================
+   Three equal-width cards in reading order — Feeder, Intermediate, CoE —
+   with an arrow between each. Grid columns are `1fr auto 1fr auto 1fr`
+   on wide screens (three equal card columns, two auto-sized arrow
+   columns) and a single `1fr` column on narrow ones, so the exact same
+   DOM order (card, arrow, card, arrow, card) auto-wraps into a vertical
+   stack with no separate mobile markup or width math — nothing here can
+   overflow, since every card column is an equal, ungoverned fraction. */
 .pathway { position: relative; }
-.pathway-stairs {
-  display: flex;
-  flex-direction: column-reverse;
+.pathway-flow {
+  display: grid;
+  grid-template-columns: 1fr;
+  align-items: stretch;
   gap: var(--sp-5);
   margin-top: var(--sp-8);
 }
-.pathway-stairs__step {
+@media (min-width: 960px) {
+  .pathway-flow { grid-template-columns: 1fr auto 1fr auto 1fr; gap: var(--sp-4); }
+}
+.pathway-flow__arrow {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--saffron);
+  transform: rotate(90deg);
+}
+.pathway-flow__arrow svg { width: 26px; height: 26px; }
+@media (min-width: 960px) {
+  .pathway-flow__arrow { transform: none; }
+}
+.pathway-flow__card {
   position: relative;
-  width: 100%;
   border-radius: var(--radius-lg);
   border: 1px solid rgba(255,255,255,0.14);
   padding: var(--sp-6);
@@ -304,22 +316,16 @@
   color: var(--white);
 }
 @media (min-width: 960px) {
-  .pathway-stairs__step { padding: var(--sp-7) var(--sp-6); }
+  .pathway-flow__card { padding: var(--sp-7) var(--sp-6); }
 }
-.pathway-stairs__step--feeder { background: linear-gradient(160deg, #16305C, var(--bg)); }
-.pathway-stairs__step--intermediate {
-  width: 90%;
-  margin-left: 10%;
-  background: linear-gradient(160deg, #2E5FA3, #1C3F76);
-}
-.pathway-stairs__step--coe {
-  width: 80%;
-  margin-left: 20%;
+.pathway-flow__card--feeder { background: linear-gradient(160deg, #16305C, var(--bg)); }
+.pathway-flow__card--intermediate { background: linear-gradient(160deg, #2E5FA3, #1C3F76); }
+.pathway-flow__card--coe {
   background: linear-gradient(160deg, #FF9354, var(--saffron));
   border-color: rgba(255,255,255,0.35);
   box-shadow: 0 0 48px rgba(255,103,31,0.35);
 }
-.pathway-stairs__destination {
+.pathway-flow__destination {
   align-self: flex-start;
   font-family: var(--font-sub);
   font-size: 0.7rem;
@@ -332,39 +338,19 @@
   padding: 4px 12px;
   border-radius: var(--radius-pill);
 }
-.pathway-stairs__riser {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  font-family: var(--font-sub);
-  font-size: 0.78rem;
-  font-weight: 600;
-  text-transform: uppercase;
-  letter-spacing: 0.05em;
-  color: var(--saffron);
-}
-.pathway-stairs__riser--intermediate { margin-left: 10%; }
-.pathway-stairs__riser--coe { margin-left: 20%; }
-.pathway-stairs__riser-arrow {
-  width: 0; height: 0;
-  border-left: 5px solid transparent;
-  border-right: 5px solid transparent;
-  border-bottom: 8px solid var(--saffron);
-  flex: none;
-}
-.pathway-stairs__head { display: flex; align-items: center; justify-content: space-between; }
-.pathway-stairs__num { font-family: var(--font-heading); font-size: 2.2rem; color: rgba(255,255,255,0.85); }
-.pathway-stairs__age { font-family: var(--font-sub); font-size: 0.72rem; text-transform: uppercase; letter-spacing: 0.05em; color: var(--white); background: rgba(255,255,255,0.2); border: 1px solid rgba(255,255,255,0.3); padding: 5px 10px; border-radius: var(--radius-pill); }
-.pathway-stairs__name { font-family: var(--font-heading); text-transform: uppercase; font-size: 1.6rem; color: var(--white); }
-.pathway-stairs__tag { font-family: var(--font-sub); font-size: 0.8rem; color: rgba(255,255,255,0.6); text-transform: uppercase; letter-spacing: 0.04em; }
-.pathway-stairs__summary { color: rgba(255,255,255,0.78); font-size: 0.92rem; }
-.pathway-stairs__list { display: flex; flex-direction: column; gap: 8px; margin-top: var(--sp-2); }
-.pathway-stairs__list li { display: flex; gap: 8px; font-size: 0.86rem; color: rgba(255,255,255,0.78); }
-.pathway-stairs__list li::before { content: ""; width: 5px; height: 5px; border-radius: 50%; background: rgba(255,255,255,0.85); margin-top: 8px; flex: none; }
-.pathway-stairs__meta { margin-top: auto; padding-top: var(--sp-4); border-top: 1px solid rgba(255,255,255,0.2); display: flex; flex-direction: column; gap: 6px; }
-.pathway-stairs__meta-row { display: flex; justify-content: space-between; gap: var(--sp-3); font-size: 0.78rem; }
-.pathway-stairs__meta-row span:first-child { color: rgba(255,255,255,0.6); }
-.pathway-stairs__meta-row span:last-child { font-weight: 600; text-align: right; color: var(--white); }
+.pathway-flow__head { display: flex; align-items: center; justify-content: space-between; }
+.pathway-flow__num { font-family: var(--font-heading); font-size: 2.2rem; color: rgba(255,255,255,0.85); }
+.pathway-flow__age { font-family: var(--font-sub); font-size: 0.72rem; text-transform: uppercase; letter-spacing: 0.05em; color: var(--white); background: rgba(255,255,255,0.2); border: 1px solid rgba(255,255,255,0.3); padding: 5px 10px; border-radius: var(--radius-pill); }
+.pathway-flow__name { font-family: var(--font-heading); text-transform: uppercase; font-size: 1.6rem; color: var(--white); }
+.pathway-flow__tag { font-family: var(--font-sub); font-size: 0.8rem; color: rgba(255,255,255,0.6); text-transform: uppercase; letter-spacing: 0.04em; }
+.pathway-flow__summary { color: rgba(255,255,255,0.78); font-size: 0.92rem; }
+.pathway-flow__list { display: flex; flex-direction: column; gap: 8px; margin-top: var(--sp-2); }
+.pathway-flow__list li { display: flex; gap: 8px; font-size: 0.86rem; color: rgba(255,255,255,0.78); }
+.pathway-flow__list li::before { content: ""; width: 5px; height: 5px; border-radius: 50%; background: rgba(255,255,255,0.85); margin-top: 8px; flex: none; }
+.pathway-flow__meta { margin-top: auto; padding-top: var(--sp-4); border-top: 1px solid rgba(255,255,255,0.2); display: flex; flex-direction: column; gap: 6px; }
+.pathway-flow__meta-row { display: flex; justify-content: space-between; gap: var(--sp-3); font-size: 0.78rem; }
+.pathway-flow__meta-row span:first-child { color: rgba(255,255,255,0.6); }
+.pathway-flow__meta-row span:last-child { font-weight: 600; text-align: right; color: var(--white); }
 
 .pathway-note { margin-top: var(--sp-7); display: flex; align-items: center; gap: var(--sp-3); }
 
