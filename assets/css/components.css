@@ -24,9 +24,17 @@
 .btn:hover svg { transform: translateX(3px); }
 .btn:active { transform: scale(0.98); }
 /* Long labels ("School & Institutional Enquiries") must never force the
-   page wider than the screen on mobile — wrap to two lines instead. */
+   page wider than the screen on mobile — wrap freely instead. Padding
+   trimmed slightly (not font-size/weight/family) to give text more room. */
 @media (max-width: 480px) {
-  .btn { white-space: normal; text-align: center; max-width: 100%; }
+  .btn {
+    --btn-pad-x: 1.1rem;
+    white-space: normal;
+    overflow-wrap: break-word;
+    word-break: break-word;
+    text-align: center;
+    max-width: 100%;
+  }
 }
 
 .btn--primary {
@@ -258,6 +266,18 @@
 .main-nav__link[aria-current="page"]::after { right: 0; }
 .main-nav__link[aria-current="page"] { color: var(--white); }
 
+/* Flagship destination gets the same saffron-pill treatment as the
+   "Join the Pathway" CTA, so it stands out from the other nav items. */
+.main-nav__link--highlight {
+  background: var(--gradient-saffron);
+  color: var(--white);
+  padding: 8px 16px;
+  border-radius: var(--radius-pill);
+  box-shadow: var(--shadow-saffron);
+}
+.main-nav__link--highlight::after { display: none; }
+.main-nav__link--highlight:hover { transform: translateY(-1px); }
+
 .header-actions { display: flex; align-items: center; gap: var(--sp-4); }
 .header-actions .btn { display: none; }
 
@@ -310,6 +330,17 @@
 .mobile-nav__link[aria-current="page"] {
   color: var(--saffron-soft);
 }
+/* Flagship destination — same saffron treatment as the "Join the Pathway"
+   CTA, carried into the mobile menu as a filled pill instead of plain text. */
+.mobile-nav__link--highlight {
+  display: inline-block;
+  background: var(--gradient-saffron);
+  color: var(--white);
+  padding: 10px 20px;
+  border-radius: var(--radius-pill);
+  margin-block: 4px;
+  border-bottom: none;
+}
 .mobile-nav__actions { margin-top: var(--sp-7); display: flex; flex-direction: column; gap: var(--sp-3); }
 .mobile-nav__meta { margin-top: auto; padding-top: var(--sp-6); color: var(--mist-45); font-size: 0.82rem; }
 
@@ -358,16 +389,19 @@
 .social-row a:hover { background: var(--mist-12); border-color: var(--mist-45); }
 .social-row svg { width: 16px; height: 16px; }
 
+/* Base rule must come first — a later unconditional rule with equal
+   specificity would always win over these media queries regardless of
+   viewport, which is what was hiding "Get Involved"/"Contact" on mobile. */
+.footer-grid {
+  display: grid;
+  grid-template-columns: 1.4fr repeat(3, 1fr);
+  gap: var(--sp-7);
+}
 @media (max-width: 900px) {
   .footer-grid { grid-template-columns: 1fr 1fr; }
 }
 @media (max-width: 560px) {
   .footer-grid { grid-template-columns: 1fr; }
-}
-.footer-grid {
-  display: grid;
-  grid-template-columns: 1.4fr repeat(3, 1fr);
-  gap: var(--sp-7);
 }
 
 /* ---------- Accordion (Parents FAQ) ---------- */

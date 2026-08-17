@@ -275,19 +275,26 @@
   width: 34px; height: 34px; opacity: 0.5;
 }
 
-/* ================= PATHWAY ================= */
+/* ================= PATHWAY (pyramid) =================
+   Feeder Centres are the widest, at the base; the Centre of Excellence is
+   the narrowest, at the peak — the shape itself tells the story. Source
+   order stays Feeder -> Intermediate -> CoE (correct reading order for
+   screen readers/SEO); column-reverse flips it visually so CoE renders on
+   top without reordering the markup. */
 .pathway { position: relative; }
 .pathway-track {
-  display: grid;
-  grid-template-columns: 1fr;
-  gap: var(--sp-5);
+  display: flex;
+  flex-direction: column-reverse;
+  align-items: center;
+  gap: var(--sp-6);
   margin-top: var(--sp-8);
   counter-reset: stage;
 }
-@media (min-width: 960px) { .pathway-track { grid-template-columns: repeat(3, 1fr); gap: 0; } }
 
 .pathway-stage {
   position: relative;
+  width: 100%;
+  max-width: 620px;
   background: rgba(255,255,255,0.045);
   border: 1px solid var(--ink-12);
   padding: var(--sp-6);
@@ -295,6 +302,10 @@
   flex-direction: column;
   gap: var(--sp-4);
 }
+/* Base of the pyramid — widest tier. */
+.pathway-stage--feeder { max-width: 920px; }
+/* Peak of the pyramid — narrowest tier. */
+.pathway-stage--coe { max-width: 440px; }
 .pathway-stage::before {
   content: "";
   position: absolute; inset: 0;
@@ -305,17 +316,6 @@
 .pathway-stage > * { position: relative; z-index: 1; }
 @media (min-width: 960px) {
   .pathway-stage { padding: var(--sp-7) var(--sp-6); }
-  .pathway-stage:not(:last-child) { border-right: none; }
-  .pathway-stage::after {
-    content: "";
-    position: absolute; right: -18px; top: 50%; translate: 0 -50%;
-    width: 34px; height: 34px;
-    border-radius: 50%;
-    background: var(--gradient-saffron);
-    z-index: 3;
-    display: flex;
-  }
-  .pathway-stage:last-child::after { display: none; }
 }
 .pathway-stage__head { display: flex; align-items: center; justify-content: space-between; }
 .pathway-stage__num {
